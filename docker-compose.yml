@@ -1,0 +1,20 @@
+version: '3.8'
+
+networks:
+  shared_services:
+    external: true
+
+services:
+  smtp-relay:
+    image: dhushyanths/smtp-relay:latest
+    container_name: smtp-relay
+    volumes:
+      # Mount your custom config file
+      - config:/etc/smtp-relay:ro
+    environment:
+      # Optional: override log level
+      - RUST_LOG=info
+    restart: unless-stopped
+
+volumes:
+  config:
