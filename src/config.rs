@@ -60,8 +60,6 @@ pub struct StrategyConfig {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub api_url: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub from_address: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub extra_headers: Option<Vec<(String, String)>>,
 }
 
@@ -71,7 +69,6 @@ impl Default for StrategyConfig {
             strategy_type: "webhook".to_string(),
             api_key: None,
             api_url: Some("http://localhost:3000/email".to_string()),
-            from_address: None,
             extra_headers: None,
         }
     }

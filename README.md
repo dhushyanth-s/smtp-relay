@@ -24,13 +24,11 @@ Example `config.json` file
   "strategies": [
     {
       "type": "resend",
-      "api_key": "re_Vgcz7RwG_AF1gNYxsiQF2MvsNVE8AiKgy",
-      "from_address": "test@exmaple.com"
+      "api_key": "re_Vgcz7RwG_AF1gNYxsiQF2MvsNVE8AiKgy"
     },
     {
       "type": "webhook",
       "api_url": "exmaple.com",
-      "from_address": "test@exmaple.com",
       "extra_headers": [
         "header": "value"
       ]

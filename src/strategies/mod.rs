@@ -52,9 +52,7 @@ pub fn create_strategy(config: StrategyConfig) -> anyhow::Result<ApiStrategy> {
         "resend" => {
             let api_key = config.api_key
                 .ok_or_else(|| anyhow::anyhow!("api_key is required for resend strategy"))?;
-            let from = config.from_address
-                .unwrap_or_else(|| "onboarding@resend.dev".to_string());
-            Ok(ApiStrategy::Resend(ResendStrategy::new(api_key, from)?))
+            Ok(ApiStrategy::Resend(ResendStrategy::new(api_key)?))
         }
         _ => {
             anyhow::bail!("Unknown API strategy: {}", config.strategy_type)

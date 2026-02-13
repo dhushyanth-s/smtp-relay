@@ -9,7 +9,6 @@ pub struct ResendStrategy {
     client: reqwest::Client,
     #[allow(dead_code)]
     api_key: String,
-    from: String,
 }
 
 #[derive(serde::Serialize)]
@@ -37,7 +36,7 @@ struct Attachment {
 }
 
 impl ResendStrategy {
-    pub fn new(api_key: String, from: String) -> anyhow::Result<Self> {
+    pub fn new(api_key: String) -> anyhow::Result<Self> {
         let mut headers = HeaderMap::new();
         headers.insert(
             reqwest::header::CONTENT_TYPE,
@@ -55,8 +54,7 @@ impl ResendStrategy {
 
         Ok(Self {
             client,
-            api_key,
-            from,
+            api_key
         })
     }
 
@@ -74,7 +72,7 @@ impl ResendStrategy {
         );
 
         let payload = ResendPayload {
-            from: self.from.clone(),
+            from: email.from.clone(),
             to: email.to,
             subject: Some(email.subject),
             text,
